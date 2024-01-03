@@ -14,6 +14,7 @@ pipeline {
       steps {
         script {
           sh 'npm run build'
+          echo 'success'
         }
       }
     }
