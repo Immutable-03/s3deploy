@@ -2,8 +2,10 @@ pipeline {
     agent any
 
     environment {
-        AWS_DEFAULT_REGION = 'ap-south-1'
-        S3_BUCKET = 'appreactjs'
+        AWS_ACCESS_KEY_ID     = credentials('AKIATOWQFZCJX67ZUSJY')
+        AWS_SECRET_ACCESS_KEY = credentials('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')
+        AWS_DEFAULT_REGION    = 'ap-south-1'
+        S3_BUCKET             = 'appreactjs'
     }
 
     stages {
@@ -32,9 +34,7 @@ pipeline {
         stage('Deploy to S3') {
             steps {
                 script {
-                    withAWS(region: env.AWS_DEFAULT_REGION, credentials: 'your-aws-credentials-id') {
-                        s3Upload(bucket: env.S3_BUCKET, workingDir: 'dist', includePathPattern: '**/*')
-                    }
+                    sh "aws s3 sync dist/ s3://${S3_BUCKET}/"
                 }
             }
         }
