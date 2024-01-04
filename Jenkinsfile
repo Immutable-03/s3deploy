@@ -26,7 +26,9 @@ pipeline {
           script {
             sh '/usr/bin/aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID'
             sh '/usr/bin/aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY'
+            sh 'aws configure list'
             sh 'aws s3 sync build/ s3://appreactjs'
+
           }
         }
       }
