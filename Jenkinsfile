@@ -21,8 +21,8 @@ pipeline {
 
     stage('Deploy') {
       steps {
-        withCredentials([string(credentialsId: 'AKIATOWQFZCJX67ZUSJY', variable: 'AWS_ACCESS_KEY_ID'),
-                        string(credentialsId: 'AKIATOWQFZCJX67ZUSJY', variable: 'AWS_SECRET_ACCESS_KEY')]) {
+        withCredentials([string(credentialsId: 'AWS', variable: 'AWS_ACCESS_KEY_ID'),
+                        string(credentialsId: 'AWS', variable: 'AWS_SECRET_ACCESS_KEY')]) {
           script {
             sh '/usr/bin/aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID'
             sh '/usr/bin/aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY'
